@@ -10,13 +10,13 @@ class MusicPlayer:
     def __init__(self):
 
         self.Musics={ #默认字典，格式：{名称:路径,...}
-            "MainUI":"./music/主界面.mp3",
-            "First":"./music/第一场.mp3",
-            "Second":"./music/第二场.mp3",
-            "Third":"./music/第三场.mp3",
-            "Dead":"./music/被击败.mp3",
-            "Win":"./music/击败对方.mp3",
-            "End":"./music/结算美元.mp3"
+            "MainUI":"./music/mainui.mp3",
+            "First":"./music/first.mp3",
+            "Second":"./music/second.mp3",
+            "Third":"./music/third.mp3",
+            "Dead":"./music/dead.mp3",
+            "Win":"./music/win.mp3",
+            "End":"./music/money.mp3"
         }
 
     def go(self,name:str="MainUI"):

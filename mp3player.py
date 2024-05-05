@@ -40,10 +40,9 @@ class MusicPlayer:
         mixer.music.load(self.Musics[self.mp3])
         mixer.music.play()
         while self.running:
-            if mixer.music.get_busy():
-                pass
-            else:
+            if mixer.music.get_busy() is False:
                 mixer.music.play()
+                
         mixer.music.stop()
 
 def demo(): #示例

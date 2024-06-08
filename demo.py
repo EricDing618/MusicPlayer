@@ -12,9 +12,8 @@ Musics = {
     "End":"./music/money.mp3"
 }
 
-play = MusicPlayer()
+play = MusicPlayer(Musics)
 play.go()
-play.GiveAMusicDict(Musics)
 
 for i in range(seconds):
     print(f"{str(seconds-i)}...")

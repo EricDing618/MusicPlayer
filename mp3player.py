@@ -7,17 +7,9 @@ from threading import Thread
 class MusicPlayer:
     '''废弃项目（俄罗斯轮盘赌）的音乐播放器，可再利用。'''
 
-    def __init__(self):
-
-        self.Musics={ #默认字典，格式：{名称:路径,...}
-            "MainUI":"./music/mainui.mp3",
-            "First":"./music/first.mp3",
-            "Second":"./music/second.mp3",
-            "Third":"./music/third.mp3",
-            "Dead":"./music/dead.mp3",
-            "Win":"./music/win.mp3",
-            "End":"./music/money.mp3"
-        }
+    def __init__(self,MusicDict:dict):
+        #默认字典，格式：{名称:路径,...}
+        self.Musics=MusicDict
 
     def go(self,name:str="MainUI"):
         '''开始播放，name指字典中的某个key。'''
@@ -44,18 +36,3 @@ class MusicPlayer:
                 mixer.music.play()
                 
         mixer.music.stop()
-
-def demo(): #示例
-    seconds=15
-    play=MusicPlayer()
-    play.go()
-    play.GiveAMusicDict()
-    from time import sleep
-    for i in range(seconds):
-        print(f"{str(seconds-i)}...")
-        sleep(1)
-    play.stop()
-    print('Stop!')
-
-if __name__ == "__main__":
-    demo()

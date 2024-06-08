@@ -10,6 +10,7 @@ class MusicPlayer:
     def __init__(self,MusicDict:dict):
         '''MusicDict：音频播放列表，Key是名称，Value是路径'''
         self.Musics=MusicDict
+        self.volume=1.0
 
     def set_volume(self,n:int=100):
         self.volume = n / 100
@@ -23,27 +24,27 @@ class MusicPlayer:
         '''开始播放，name指字典中的某个key。'''
         self.mp3=name
         self.running=1
-        self.playloop=loop
+        if loop:
+            self.playloop=-1
+        else:
+            self.playloop=0
 
-        self.playthread=Thread(target=self.__start)
-        self.playthread.start()
+        self.__start()
 
+    def pause(yes=True):
+        if yes:
+            mixer.music.pause()
+        else:
+            mixer.music.unpause()
+            
     def stop(self):
         '''终止播放音频。'''
-        self.running=0
-
-    def thread_join(self,timeout=None):
-        self.playthread.join(timeout)
+        mixer.music.stop()
 
     def __start(self):
-        '''防止堵塞，使用多线程方式播放音频。'''
         mixer.init()
         mixer.music.load(self.Musics[self.mp3])
-        mixer.music.play()
-        while self.running:
-            if mixer.music.get_busy() is False and self.playloop:
-                mixer.music.play()
-            else:
-                break
-                
-        mixer.music.stop()
+        mixer.music.play(self.playloop)
+        mixer.music.set_volume(self.volume)
+
+        

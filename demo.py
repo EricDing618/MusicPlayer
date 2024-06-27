@@ -1,7 +1,6 @@
 from mp3player import *
 from time import sleep
 
-seconds = 15
 Musics = {
     "MainUI":"./music/mainui.mp3",
     "First":"./music/first.mp3",
@@ -11,13 +10,16 @@ Musics = {
     "Win":"./music/win.mp3",
     "End":"./music/money.mp3"
 }
+def test(seconds=15,name="MainUI",loop=True,musicdict:dict[str,str]=Musics):
+    play = MusicPlayer(musicdict)
+    play.go(name,loop)
 
-play = MusicPlayer(Musics)
-play.go()
+    for i in range(seconds):
+        print(f"{str(seconds-i)}...")
+        sleep(1)
 
-for i in range(seconds):
-    print(f"{str(seconds-i)}...")
-    sleep(1)
+    play.stop()
+    print('Stop!')
 
-play.stop()
-print('Stop!')
+if __name__ == '__main__':
+    test()
